@@ -2,6 +2,8 @@ package Transport.Drivers;
 
 import Transport.*;
 
+import java.util.Objects;
+
 public class Driver<T extends Transport, C extends Category> {
     protected final String fio;
     protected final boolean HavingALicense;
@@ -59,6 +61,19 @@ public class Driver<T extends Transport, C extends Category> {
 
     public void refuel() {
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Driver<?, ?> driver = (Driver<?, ?>) o;
+        return HavingALicense == driver.HavingALicense && experience == driver.experience && Objects.equals(fio, driver.fio) && Objects.equals(category, driver.category);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fio, HavingALicense, experience, category);
     }
 
     @Override

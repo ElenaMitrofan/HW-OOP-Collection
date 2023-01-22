@@ -1,5 +1,7 @@
 package Transport;
 
+import java.util.Objects;
+
 public class Truck extends Transport implements Competing {
     private final boolean service;
     public Truck(String brand, String model, double engineVolume, boolean service) {
@@ -49,6 +51,19 @@ public class Truck extends Transport implements Competing {
     public void fixTheCar() {
         System.out.printf("Мфшина %s починена", getBrand());
         System.out.println();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Truck truck = (Truck) o;
+        return service == truck.service;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(service);
     }
 }
 

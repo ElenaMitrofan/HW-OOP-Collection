@@ -8,6 +8,7 @@ import Transport.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Mechanic <T extends Transport, C extends Category> {
@@ -69,6 +70,19 @@ public class Mechanic <T extends Transport, C extends Category> {
     }
     public void fixTheCar(T t){
         t.fixTheCar();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Mechanic<?, ?> mechanic = (Mechanic<?, ?>) o;
+        return Objects.equals(name, mechanic.name) && Objects.equals(company, mechanic.company) && Objects.equals(carType, mechanic.carType) && Objects.equals(category, mechanic.category);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, company, carType, category);
     }
 
     @Override
